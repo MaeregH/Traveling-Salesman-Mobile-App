@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "7336802e-7a35-45dc-a304-fa7771fc7c74",
+		"name": "tour",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "38360735-7336802e-7a35-45dc-a304-fa7771fc7c74"
+	},
+	"item": [
+		{
+			"name": "base",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b419e66c-ef5a-4feb-aa00-4c85baad1b37",
+						"exec": [
+							"pm.test(\"Response is HTTP 400 status\", () => {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "da46d76f-f519-4e63-b3b8-31fb4662dd04",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"tour\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/tour",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"tour"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Six-Places-Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "71326250-a8e4-4e07-88b0-b1a348ab937e",
+						"exec": [
+							"pm.test(\"cortega2 : Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"cortega2: Response contains optimized places array\", () => {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"places\");",
+							"    pm.expect(jsonData.places).to.be.an(\"array\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "f7aa7ef5-ba15-4ea7-9a7d-01dbbe55889f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"tour\",\n    \"earthRadius\": 118999,\n    \"response\": 0,\n    \"places\": [\n        {\n            \"name\": \"Chuck E Cheese's\",\n            \"municipality\": \"Jeddah\",\n            \"region\": \"Middle East\",\n            \"country\": \"Saudi Arabia\",\n            \"latitude\": \"21.62194\",\n            \"longitude\": \"39.15361\"\n        },\n        {\n            \"name\": \"Costco Wholesale\",\n            \"municipality\": \"Timnath\",\n            \"region\": \"North America\",\n            \"country\": \"United States\",\n            \"latitude\": \"40.52167\",\n            \"longitude\": \"-104.98833\"\n        },\n        {\n            \"name\": \"Wawa\",\n            \"municipality\": \"Claymont\",\n            \"region\": \"North America\",\n            \"country\": \"United States\",\n            \"latitude\": \"39.8175\",\n            \"longitude\": \"-75.45944\"\n        },\n        {\n            \"name\": \"Jack in the Box\",\n            \"municipality\": \"San Ysidro\",\n            \"region\": \"North America\",\n            \"country\": \"United States\",\n            \"latitude\": \"32.54861\",\n            \"longitude\": \"-117.03306\"\n        },\n        {\n            \"name\": \"Spirit Halloween\",\n            \"municipality\": \"National City\",\n            \"region\": \"North America\",\n            \"country\": \"United States\",\n            \"latitude\": \"32.65694\",\n            \"longitude\": \"-117.06556\"\n        },\n        {\n            \"name\": \"Madison Square Garden\",\n            \"municipality\": \"New York\",\n            \"region\": \"North America\",\n            \"country\": \"United States\",\n            \"latitude\": \"40.75028\",\n            \"longitude\": \"-73.99167\"\n        },\n        {\n            \"name\": \"Mercat Central\",\n            \"municipality\": \"Valencia\",\n            \"region\": \"Europe\",\n            \"country\": \"Spain\",\n            \"latitude\": \"39.47222\",\n            \"longitude\": \"-0.3775\"\n        },\n        {\n            \"name\": \"Texas A&M University\",\n            \"municipality\": \"San Antonio\",\n            \"region\": \"North America\",\n            \"country\": \"United States\",\n            \"latitude\": \"29.30583\",\n            \"longitude\": \"98.52472\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/tour",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"tour"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "45208c78-0fed-4acb-9244-dddd74211e6b",
+						"exec": [
+							"pm.test(\"cortega2: Tour Test\", () => {",
+							"    const jsonResponse = pm.response.json();",
+							"",
+							"",
+							"// Define the expected optimized list of places",
+							"const expectedResponse = {",
+							"    \"requestType\": \"tour\",",
+							"    \"earthRadius\": 6378137.0,",
+							"    \"response\": 1.0,",
+							"    \"places\": [",
+							"        {",
+							"            \"name\": \"a\",",
+							"            \"latitude\": \"38.41\",",
+							"            \"longitude\": \"-115.47\"",
+							"        },",
+							"        {",
+							"            \"name\": \"b\",",
+							"            \"latitude\": \"43.78\",",
+							"            \"longitude\": \"-115.47\"",
+							"        },",
+							"        {",
+							"            \"name\": \"c\",",
+							"            \"latitude\": \"43.78\",",
+							"            \"longitude\": \"-98.56\"",
+							"        },",
+							"        {",
+							"            \"name\": \"d\",",
+							"            \"latitude\": \"38.41\",",
+							"            \"longitude\": \"-98.56\"",
+							"        }",
+							"    ]",
+							"};",
+							"   pm.expect(jsonResponse.distances).to.eql(expectedResponse.distances);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "6f952f3a-d760-4c11-b6de-f6594e8ca290",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"tour\",\n    \"earthRadius\": 6378137.0,\n    \"response\": 1.0,\n    \"places\":\n    [\n        {\n            \"name\": \"a\",\n            \"latitude\": \"38.41\",\n            \"longitude\": \"-115.47\"\n        },\n        {\n            \"name\": \"d\",\n            \"latitude\": \"38.41\",\n            \"longitude\": \"-98.56\"\n        },\n        {\n            \"name\": \"b\",\n            \"latitude\": \"43.78\",\n            \"longitude\": \"-115.47\"\n        },\n        {\n            \"name\": \"c\",\n            \"latitude\": \"43.78\",\n            \"longitude\": \"-98.56\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/tour",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"tour"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

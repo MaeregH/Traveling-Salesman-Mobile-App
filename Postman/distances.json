@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "1b319cc3-95fa-4f05-afe9-25e4d9d03dea",
+		"name": "distances",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "38360735-1b319cc3-95fa-4f05-afe9-25e4d9d03dea"
+	},
+	"item": [
+		{
+			"name": "base",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb631545-4060-4707-84fb-fb2519954960",
+						"exec": [
+							"pm.test(\"Response is HTTP200 status\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "c5c50095-0279-461c-8ad1-eecc979ee351",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"distances\",\n    \"places\": [],\n    \"earthRadius\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/distances",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"distances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vincenty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6cb0fc8e-d459-40c2-b959-c92e4fc73ed6",
+						"exec": [
+							"pm.test(\"cortega2: Distances API test with Vincenty formula\", () => {",
+							"    // Parse the response JSON",
+							"    const jsonResponse = pm.response.json();",
+							"",
+							"    // Define the expected response data",
+							"    const expectedResponse = {",
+							"        distances: [43155558, 54450062, 31212420, 55947974]",
+							"        // Add any other expected properties if necessary",
+							"    };",
+							"",
+							"    // Validate the response matches the expected structure and values",
+							"    pm.expect(jsonResponse.distances).to.eql(expectedResponse.distances);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "36ec4939-11a2-40f7-b0b4-6599bbd50877",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\"    : \"distances\",\n    \"places\"         : [{\"name\":\"Ottawa\", \"latitude\":  \"45.250157\",  \"longitude\": \"-75.800257\"},\n                        {\"name\": \"Santiago\", \"latitude\":  \"-33.472788\", \"longitude\": \"-70.629831\"},\n                        {\"name\": \"Antananarivo\", \"latitude\":  \"-20.027103\", \"longitude\": \"46.220220\"},\n                        {\"name\": \"New Delhi\", \"latitude\":  \"28.527352\", \"longitude\": \"77.208985\"}],\n    \"earthRadius\"    : 31353696,\n    \"formula\"        : \"vincenty\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/distances",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"distances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a9c878d-1dd6-4f03-b526-400339440b19",
+						"exec": [
+							"pm.test(\"cortega2: Distances API test with Vincenty formula\", () => {",
+							"    // Parse the response JSON",
+							"    const jsonResponse = pm.response.json();",
+							"",
+							"    // Define the expected response data",
+							"    const expectedResponse = {",
+							"        distances:[ 3561, 7681, 10460, 11583 ]",
+							"        // Add any other expected properties if necessary",
+							"    };",
+							"",
+							"    // Validate the response matches the expected structure and values",
+							"    pm.expect(jsonResponse.distances).to.eql(expectedResponse.distances);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "bf226e05-9b91-4ac0-8890-1e0769b624e2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\"   :   \"distances\",\n    \"places\"        :   [{\"name\": \"Batman, Türkiye\", \"latitude\": \"37.891193\", \"longitude\": \"41.141367\"}, \n                        {\"name\": \"Kihihi, Uganda\", \"latitude\": \"-0.759304\", \"longitude\": \"29.776010\"},\n                        {\"name\": \"Qeqertarsuatsiaat, Greenland\", \"latitude\": \"63.089572\", \"longitude\": \"-50.673698\"},\n                        {\"name\": \"Rio Granda, Argentina\", \"latitude\": \"-53.785444\", \"longitude\": \"-67.706953\"}],\n    \"earthRadius\"   :   5095,\n    \"formula\"       :   \"vincenty\"\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/distances",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"distances"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

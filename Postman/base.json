@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "48ef9b31-953d-42a6-a445-bebc3b2666f4",
+		"name": "314-api-tests",
+		"description": "This collection contains tests for the various API requests in the CS314 webapp.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "38360735-48ef9b31-953d-42a6-a445-bebc3b2666f4"
+	},
+	"item": [
+		{
+			"name": "config",
+			"item": [
+				{
+					"name": "Config Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "95a9731f-463f-4b66-9cc4-304f4fc56a45",
+								"exec": [
+									"pm.test(\"Response is HTTP200 status\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Server-side team name is correct\", () => {",
+									"    const response = pm.response.json();",
+									"    const expectedTeamName = pm.collectionVariables.get(\"TEAM_NAME\");",
+									"    pm.expect(response.serverName).to.eql(expectedTeamName);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "929641f1-da34-4141-b296-2d5798800b60",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"requestType\": \"config\",\n    \"features\": [\"config\"] \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/config",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"config"
+							]
+						},
+						"description": "Testing the result of Config Post requests."
+					},
+					"response": []
+				}
+			],
+			"id": "90899f33-9950-419e-a9d8-e031c661f18b"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "149ca9d4-9a7c-4512-8571-a8e575985fb4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d2a1946b-0836-43ac-9b17-a914d40a2201",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "22c08a32-9998-468c-85d7-69413301b916",
+			"key": "BASE_URL",
+			"value": "http://localhost:8000"
+		},
+		{
+			"id": "5f2ce70e-9dbb-408b-8a9a-b178e433aa18",
+			"key": "TEAM_NAME",
+			"value": "t17 CodeRams"
+		}
+	]
+}

@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "fc5b7da0-000f-453f-8c91-3d7fe2eda1c0",
+		"name": "find",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "38360735-fc5b7da0-000f-453f-8c91-3d7fe2eda1c0"
+	},
+	"item": [
+		{
+			"name": "base",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df062f75-9566-4a76-a846-fc515e5e213c",
+						"exec": [
+							"pm.test(\"Response is HTTP200 status\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "ddd50a83-ad12-4e40-ab86-470970628d3e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"find\",\n    \"match\": \"denver\",\n    \"limit\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/find",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Country-Verification",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "58d88df3-b9b6-4029-916f-29a23fe94593",
+						"exec": [
+							"",
+							"pm.test(\"cortega2: Find Test\", () => {",
+							"    const jsonResponse = pm.response.json();",
+							"",
+							"const expectedResponse = {",
+							"  \"match\": \"dave\",",
+							"  \"limit\": 5,",
+							"  \"places\": [",
+							"    {",
+							"      \"id\": \"0CO1\",",
+							"      \"name\": \"Dave's Airport\",",
+							"      \"municipality\": \"Louisville\",",
+							"      \"iso_region\": \"US-CO\",",
+							"      \"iso_country\": \"US\",",
+							"      \"continent\": \"NA\",",
+							"      \"latitude\": \"40.0332984924\",",
+							"      \"longitude\": \"-105.124000549\",",
+							"      \"altitude\": \"5170\"",
+							"    },",
+							"    {",
+							"      \"id\": \"17CL\",",
+							"      \"name\": \"Las Trancas Airport\",",
+							"      \"municipality\": \"Davenport\",",
+							"      \"iso_region\": \"US-CA\",",
+							"      \"iso_country\": \"US\",",
+							"      \"continent\": \"NA\",",
+							"      \"latitude\": \"37.0880012512\",",
+							"      \"longitude\": \"-122.274002075\",",
+							"      \"altitude\": \"125\"",
+							"    },",
+							"    {",
+							"      \"id\": \"1OK1\",",
+							"      \"name\": \"Dave's Place Airport\",",
+							"      \"municipality\": \"Kingfisher\",",
+							"      \"iso_region\": \"US-OK\",",
+							"      \"iso_country\": \"US\",",
+							"      \"continent\": \"NA\",",
+							"      \"latitude\": \"35.82500076293945\",",
+							"      \"longitude\": \"-97.80590057373047\",",
+							"      \"altitude\": \"1160\"",
+							"    },",
+							"    {",
+							"      \"id\": \"22NE\",",
+							"      \"name\": \"Grone Airport\",",
+							"      \"municipality\": \"Davenport\",",
+							"      \"iso_region\": \"US-NE\",",
+							"      \"iso_country\": \"US\",",
+							"      \"continent\": \"NA\",",
+							"      \"latitude\": \"40.297000885009766\",",
+							"      \"longitude\": \"-97.79810333251953\",",
+							"      \"altitude\": \"1643\"",
+							"    },",
+							"    {",
+							"      \"id\": \"2IA0\",",
+							"      \"name\": \"Genesis Medical Center East Campus Heliport\",",
+							"      \"municipality\": \"Davenport\",",
+							"      \"iso_region\": \"US-IA\",",
+							"      \"iso_country\": \"US\",",
+							"      \"continent\": \"NA\",",
+							"      \"latitude\": \"41.54169845581055\",",
+							"      \"longitude\": \"-90.55650329589844\",",
+							"      \"altitude\": \"677\"",
+							"    }",
+							"  ],",
+							"  \"requestType\": \"find\"",
+							"};",
+							"",
+							"    pm.expect(jsonResponse.distances).to.eql(expectedResponse.distances);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "3131ff97-de14-430d-9331-ee449894b59b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"find\",\n    \"match\": \"dave\",\n    \"limit\": 5\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/find",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
