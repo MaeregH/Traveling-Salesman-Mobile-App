@@ -1,0 +1,71 @@
+{
+  "$id": "https://example.com/near.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Near Protocol",
+  "description": "Request and response for retrieving nearby geographic locations.",
+  "type": "object",
+  "properties": {
+    "requestType": {
+      "description": "The TIP object type; should be 'near'.",
+      "type": "string",
+      "pattern": "^near$"
+    },
+    "latitude": {
+      "description": "The latitude of the center point for searching nearby places.",
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "longitude": {
+      "description": "The longitude of the center point for searching nearby places.",
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180
+    },
+    "radius": {
+      "description": "The radius (in kilometers) within which to search for nearby places.",
+      "type": "number",
+      "minimum": 0
+    },
+    "response": {
+      "description": "The maximum response time for the request.",
+      "type": "number",
+      "minimum": 0
+    },
+    "places": {
+      "description": "A list of nearby places found within the specified radius.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the place.",
+            "type": "string"
+          },
+          "latitude": {
+            "description": "The latitude of the place.",
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude": {
+            "description": "The longitude of the place.",
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "distance": {
+            "description": "The distance from the center point to this place in kilometers.",
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": ["name", "latitude", "longitude", "distance"],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    }
+  },
+  "required": ["requestType", "latitude", "longitude", "radius"],
+  "additionalProperties": false
+}
